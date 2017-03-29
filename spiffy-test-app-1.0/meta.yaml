@@ -1,0 +1,27 @@
+package:
+  name: spiffy-test-app
+  version: "1.0"
+
+source:
+  path: '.'
+
+build:
+  number: 0
+  # noarch: python
+  script: python setup.py install --single-version-externally-managed --record record.txt
+  entry_points:
+    - spiffy-test-app = spiffy_test_app:main
+    - spiffy-test-helper = spiffy_test_app:helper
+
+requirements:
+  build:
+    - python
+    - setuptools
+  run:
+    - python
+
+test:
+  imports:
+    - spiffy_test_app
+  commands:
+    - spiffy-test-app
